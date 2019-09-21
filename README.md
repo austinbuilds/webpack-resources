@@ -190,3 +190,65 @@ module.exports = {
   }
 };
 ```
+
+## Disambiguate
+
+Eventually you will find the need to disambiguate in your webpack.config.js between development and production builds.
+See:
+
+- https://webpack.js.org/configuration/mode/
+- https://webpack.js.org/api/cli/#environment-options
+- https://webpack.js.org/guides/environment-variables/
+- https://webpack.js.org/configuration/configuration-types/
+
+> package.json
+
+```json
+  "scripts": {
+    "start": "webpack --env.development --config webpack.config.js",
+    "build": "webpack --env.production --config webpack.config.js"
+  },
+```
+
+note: can also add --mode=development or --mode=production
+
+> webpack.config.js
+
+```js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+let config = {
+  entry: './src/index.js',
+  plugins: [new HtmlWebpackPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
+};
+
+module.exports = env => {
+  if (env.development == true) {
+    config.mode = 'development';
+    config.devtool = 'none';
+    config.output = {
+      filename: 'main.js',
+      path: path.resolve(__dirname, 'dist')
+    };
+  }
+
+  if (env.production === true) {
+    config.mode = 'production';
+    config.output = {
+      filename: 'main-[contentHash].js',
+      path: path.resolve(__dirname, 'dist')
+    };
+  }
+
+  return config;
+};
+```

@@ -252,3 +252,16 @@ module.exports = env => {
   return config;
 };
 ```
+
+## Dev Server
+
+```
+npm i -D webpack-dev-server
+```
+
+> package.json
+
+```json
+"scripts": {
+    "start": "webpack-dev-server --open --env.development --config webpack.config.js",
+```

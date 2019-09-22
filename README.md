@@ -2,11 +2,39 @@
 # :package: Webpack Notes
 
 
+<br><br>
+
+
+## Table of Contents
+1. [Install](#install)
+1. [Initial Config](#initial-config)
+1. [Initial File Structure](#initial-file-structure)
+1. [NPM Script](#npm-scripts)
+1. [Loaders](#loaders)
+1. [SCSS and Bootstrap Example](#scss-and-bootstrap-example)
+1. [Cache Busting](#cache-busting)
+1. [Plugins](#plugins)
+1. [Disambiguate](#disambiguate)
+1. [Dev Server](#dev-server)
+1. [HTML-loader, File-loader, & Clean-webpack](#html-loader-file-loader-and-clean-webpack)
+1. [Multiple Entrypoints and Vendor.js](#multiple-entrypoints-and-vendorjs)
+1. [Extract CSS](#extract-css)
+1. [Minify HTML, CSS, and JS](#minify-html-css-and-js)
+1. [Package.json and Webpack.config.js Example](#packagejson-and-webpackconfigjs-example)
+1. [Complete NPM Install](#complete-npm-install)
+
+
+<br><br>
+
+
 ## Install
 
 ```
 npm i -D webpack webpack-cli
 ```
+
+
+<br><br>
 
 
 ## Initial Config
@@ -27,6 +55,9 @@ module.exports = {
 ```
 
 
+<br><br>
+
+
 ## Initial File Structure
 
 ```
@@ -41,7 +72,10 @@ module.exports = {
 ```
 
 
-## NPM Script
+<br><br>
+
+
+## NPM Scripts
 
 > :page_facing_up: package.json
 
@@ -50,6 +84,9 @@ module.exports = {
     "start": "webpack --config webpack.config.js"
   },
 ```
+
+
+<br><br>
 
 
 ## Loaders
@@ -84,6 +121,9 @@ module.exports = {
 :pushpin: Note: "css-loader" turns CSS to JS, "style-loader" injects into DOM
 
 
+<br><br>
+
+
 ## SCSS and Bootstrap Example
 
 ```
@@ -95,7 +135,7 @@ npm i -D sass-loader node-sass bootstrap
 |- node_modules
 |- src
 | - index.js
-**| - main.scss**
+| - main.scss <--
 |- .gitignore
 |- package.json
 |- webpack.config.js
@@ -135,6 +175,9 @@ $danger: silver;
 ```
 
 
+<br><br>
+
+
 ## Cache Busting
 
 Use content hash to prevent browser from displaying outdated cached version of files.
@@ -162,6 +205,9 @@ module.exports = {
   }
 };
 ```
+
+
+<br><br>
 
 
 ## Plugins
@@ -198,6 +244,9 @@ module.exports = {
   }
 };
 ```
+
+
+<br><br>
 
 
 ## Disambiguate
@@ -263,6 +312,9 @@ module.exports = env => {
 ```
 
 
+<br><br>
+
+
 ## Dev Server
 
 ```
@@ -277,7 +329,10 @@ npm i -D webpack-dev-server
 ```
 
 
-## HTML-loader, File-loader, & Clean-webpack
+<br><br>
+
+
+## HTML-loader, File-loader, and Clean-webpack
 
 By default every local `<img src="image.png">` is required (require('./image.png')). You may need to specify loaders for images in your configuration (recommended file-loader or url-loader).
 
@@ -347,7 +402,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 ```
 
 
-## Multiple Entrypoints & Vendor.js
+<br><br>
+
+
+## Multiple Entrypoints and Vendor.js
 
 ```
 .
@@ -356,7 +414,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 | - index.js
 | - main.scss
 | - template.html
-**| - vendor.js**
+| - vendor.js <--
 |- .gitignore
 |- package.json
 |- webpack.config.js
@@ -410,6 +468,9 @@ import 'bootstrap';
 ```
 
 :pushpin: Note: can remove bootstap import in scss
+
+
+<br><br>
 
 
 ## Extract CSS
@@ -493,7 +554,10 @@ module.exports = env => {
 ```
 
 
-## Minify HTML/CSS/JS
+<br><br>
+
+
+## Minify HTML, CSS, and JS
 
 ```
 npm i -D optimize-css-assets-webpack-plugin
@@ -584,7 +648,11 @@ module.exports = env => {
 };
 ```
 
-## Package.json & Webpack.config.js Example
+
+<br><br>
+
+
+## Package.json and Webpack.config.js Example
 
 > :page_facing_up: package.json
 
@@ -709,6 +777,10 @@ module.exports = env => {
   return config;
 };
 ```
+
+
+<br><br>
+
 
 ## Complete NPM Install
 

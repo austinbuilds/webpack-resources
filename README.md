@@ -1,15 +1,17 @@
 
 # :package: Webpack Notes
 
+
 ## Install
 
 ```
 npm i -D webpack webpack-cli
 ```
 
+
 ## Initial Config
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const path = require('path');
@@ -24,6 +26,7 @@ module.exports = {
 };
 ```
 
+
 ## Initial File Structure
 
 ```
@@ -37,9 +40,10 @@ module.exports = {
 |- webpack.config.js
 ```
 
+
 ## NPM Script
 
-> package.json
+> :page_facing_up: package.json
 
 ```json
 "scripts": {
@@ -47,11 +51,12 @@ module.exports = {
   },
 ```
 
+
 ## Loaders
 
 Example: CSS
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const path = require('path');
@@ -74,9 +79,10 @@ module.exports = {
 };
 ```
 
-Note: use goes in reverse order, 'css-loader' would run first, 'style-loader' second.
+:pushpin: Note: use goes in reverse order, 'css-loader' would run first, 'style-loader' second.
 
-Note: "css-loader" turns CSS to JS, "style-loader" injects into DOM
+:pushpin: Note: "css-loader" turns CSS to JS, "style-loader" injects into DOM
+
 
 ## SCSS and Bootstrap Example
 
@@ -95,7 +101,7 @@ npm i -D sass-loader node-sass bootstrap
 |- webpack.config.js
 ```
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const path = require('path');
@@ -118,9 +124,9 @@ module.exports = {
 };
 ```
 
-note: "sass-loader" turns SCSS to CSS
+:pushpin: Note: "sass-loader" turns SCSS to CSS
 
-> main.scss
+> :page_facing_up: main.scss
 
 ```scss
 $primary: gold;
@@ -128,12 +134,13 @@ $danger: silver;
 @import ' ~bootstrap/scss/bootstrap';
 ```
 
+
 ## Cache Busting
 
 Use content hash to prevent browser from displaying outdated cached version of files.
 Content hash - MD5 hash generated based on code content and appended to file name.
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const path = require('path');
@@ -156,6 +163,7 @@ module.exports = {
 };
 ```
 
+
 ## Plugins
 
 Example: HTMLWebpackPlugin
@@ -165,7 +173,7 @@ Simplifies create of HTML files to serve your webpack bundles. This is especiall
 npm i -D html-webpack-plugin
 ```
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const path = require('path');
@@ -191,6 +199,7 @@ module.exports = {
 };
 ```
 
+
 ## Disambiguate
 
 Eventually you will find the need to disambiguate in your webpack.config.js between development and production builds.
@@ -201,7 +210,7 @@ See:
 - https://webpack.js.org/guides/environment-variables/
 - https://webpack.js.org/configuration/configuration-types/
 
-> package.json
+> :page_facing_up: package.json
 
 ```json
   "scripts": {
@@ -210,9 +219,9 @@ See:
   },
 ```
 
-note: can also add --mode=development or --mode=production
+:pushpin: Note: can also add --mode=development or --mode=production
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const path = require('path');
@@ -253,18 +262,20 @@ module.exports = env => {
 };
 ```
 
+
 ## Dev Server
 
 ```
 npm i -D webpack-dev-server
 ```
 
-> package.json
+> :page_facing_up: package.json
 
 ```json
 "scripts": {
     "start": "webpack-dev-server --open --env.development --config webpack.config.js",
 ```
+
 
 ## HTML-loader, File-loader, & Clean-webpack
 
@@ -274,7 +285,7 @@ By default every local `<img src="image.png">` is required (require('./image.png
 npm i -D html-loader file-loader
 ```
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 let config = {
@@ -315,7 +326,7 @@ In general it's good practice to clean the /dist folder before each build, so th
 npm i -D clean-webpack-plugin
 ```
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -335,6 +346,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 };
 ```
 
+
 ## Multiple Entrypoints & Vendor.js
 
 ```
@@ -350,7 +362,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 |- webpack.config.js
 ```
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 let config = {
@@ -391,13 +403,14 @@ Example: Bootstrap
 npm i -D bootstrap jquery popper.js
 ```
 
-> vendor.js
+> :page_facing_up: vendor.js
 
 ```js
 import 'bootstrap';
 ```
 
-note: can remove bootstap import in scss
+:pushpin: Note: can remove bootstap import in scss
+
 
 ## Extract CSS
 
@@ -479,17 +492,18 @@ module.exports = env => {
 };
 ```
 
+
 ## Minify HTML/CSS/JS
 
 ```
 npm i -D optimize-css-assets-webpack-plugin
 ```
 
-note: terser-webpack-plugin does NOT need to be installed, it is bundled with webpack by default
+:pushpin: Note: terser-webpack-plugin does NOT need to be installed, it is bundled with webpack by default
 
-note: removed HTMLWebpackPlugin from common to development and production; this allows for different settings (minification in production)
+:pushpin: Note: removed HTMLWebpackPlugin from common to development and production; this allows for different settings (minification in production)
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -572,7 +586,7 @@ module.exports = env => {
 
 ## Package.json & Webpack.config.js Example
 
-> package.json
+> :page_facing_up: package.json
 
 ```json
 {
@@ -608,7 +622,7 @@ module.exports = env => {
 }
 ```
 
-> webpack.config.js
+> :page_facing_up: webpack.config.js
 
 ```js
 const path = require('path');

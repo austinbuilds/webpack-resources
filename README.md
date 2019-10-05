@@ -22,6 +22,7 @@
 1. [Minify HTML, CSS, and JS](#minify-html-css-and-js)
 1. [Package.json and Webpack.config.js Example](#packagejson-and-webpackconfigjs-example)
 1. [Complete NPM Install](#complete-npm-install)
+1. [Updated](#updated)
 
 
 <br><br>
@@ -787,3 +788,84 @@ module.exports = env => {
 ```
 npm i -D clean-webpack-plugin css-loader file-loader html-loader html-webpack-plugin mini-css-extract-plugin node-sass optimize-css-assets-webpack-plugin sass-loader style-loader webpack webpack-cli webpack-dev-server
 ```
+
+
+<br><br>
+
+
+## Updated
+
+> :page_facing_up: webpack.config.js
+
+```js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  mode: 'production',
+  entry: {
+    './': path.resolve(__dirname, 'src/index.js'),
+    'folder/address': path.resolve(__dirname, 'src/address/index.js'),
+  },
+  output: {
+    filename: '[name]js/script.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  plugins: [
+    new MiniCssExtractPlugin({ filename: '[name]css/styles.css' }),
+    new CleanWebpackPlugin(),
+    new OptimizeCssAssetsPlugin(),
+    new TerserPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      // favicon: './src/favicon.ico',
+      chunks: ['./'],
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true
+      }
+    }),
+    new HtmlWebpackPlugin({
+      template: './address/index.html',
+      filename: './address/index.html',
+      favicon: './address/favicon.ico',
+      chunks: ['chunkname'],
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true
+      }
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.html$/,
+        use: ['html-loader']
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.(svg|png|jpg|gif)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'img'
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+

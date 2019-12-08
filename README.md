@@ -117,7 +117,7 @@ module.exports = {
 };
 ```
 
-:pushpin: Note: use goes in reverse order, 'css-loader' would run first, 'style-loader' second.
+:pushpin: Note: goes in reverse order, 'css-loader' would run first, 'style-loader' second.
 
 :pushpin: Note: "css-loader" turns CSS to JS, "style-loader" injects into DOM
 
@@ -214,7 +214,7 @@ module.exports = {
 ## Plugins
 
 Example: HTMLWebpackPlugin
-Simplifies create of HTML files to serve your webpack bundles. This is especially useful for webpack bundles that inclde a hash in the filename (see Cache Busting) which changes every compilation.
+simplifies creation of HTML files to serve your webpack bundles. This is especially useful for webpack bundles that inclde a hash in the filename (see Cache Busting) which changes every compilation.
 
 ```
 npm i -D html-webpack-plugin
